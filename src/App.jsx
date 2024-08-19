@@ -44,7 +44,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="/products"
+              path="/product/:id"
               element={
                 <MainLayout>
                   <Products></Products>

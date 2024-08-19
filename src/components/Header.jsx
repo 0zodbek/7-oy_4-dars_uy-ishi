@@ -5,6 +5,15 @@ function Header() {
   const token = useContext(TokenContext);
   const user = useContext(UserContext);
   const navigate = useNavigate();
+  console.log(token);
+  function logout(event){
+    event.preventDefault();
+    token.setToken("");
+    user.setUser("");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/");
+  }
   return (
     <div className="bg-base-200">
       <div className="header-auth bg-neutral text-white ">
@@ -14,7 +23,7 @@ function Header() {
               <h1 className="text-right text-xs text-blue-50 sm:text-sm">
                 Hello, {user.user.name}
               </h1>{" "}
-              <button className="btn btn-xs btn-outline btn-primary">
+              <button onClick={logout} className="btn btn-xs btn-outline btn-primary">
                 LOGOUT
               </button>
             </div>
@@ -86,7 +95,7 @@ function Header() {
           <ul className="menu menu-horizontal px-1">
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/about">About</NavLink></li>
-            <li><NavLink to="/products">Products</NavLink></li>
+            <li><NavLink to="/product/:id">Products</NavLink></li>
             {
               token.token && (<>
               <li><NavLink to="/checkout">Checkout</NavLink></li>

@@ -44,7 +44,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="products"
+              path="/products"
               element={
                 <MainLayout>
                   <Products></Products>
@@ -52,7 +52,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="about"
+              path="/about"
               element={
                 <MainLayout>
                   <About></About>
@@ -60,19 +60,19 @@ function App() {
               }
             ></Route>
             <Route
-              path="cart"
+              path="/cart"
               element={
                 <MainLayout>
                   <Cart></Cart>
                 </MainLayout>
               }
             ></Route>
-            <Route path="login" element={<Login></Login>}></Route>
-            <Route path="register" element={<Register></Register>}></Route>
+            <Route path="/login" element={<Login></Login>}></Route>
+            <Route path="/register" element={<Register></Register>}></Route>
             {token && (
               <>
                 <Route
-                  path="orders"
+                  path="/orders"
                   element={
                     <MainLayout>
                       <Orders></Orders>
@@ -80,7 +80,7 @@ function App() {
                   }
                 ></Route>
                 <Route
-                  path="checkout"
+                  path="/checkout"
                   element={
                     <MainLayout>
                       <Checkout></Checkout>

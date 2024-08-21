@@ -19,7 +19,7 @@ function Home() {
         navigate(`/product/${id}`);
       });
   };
-
+  console.log(data);
   return (
     <div>
       <div className="container px-8 py-20 mx-auto max-w-6xl flex justify-between">
@@ -84,6 +84,7 @@ function Home() {
         <div className="wrapper flex max-w-6xl mx-auto justify-between border-t-2 pt-10 mb-10">
           {data.length > 0 &&
             data.map((el, index) => {
+              console.log(el);
               return (
                 <div
                   onClick={() => handleClick(el.id)}

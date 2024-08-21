@@ -11,7 +11,7 @@ import Orders from "./pages/Orders";
 import Checkout from "./pages/Checkout";
 import ErrorPage from "./pages/ErrorPage";
 import MainLayout from "./layouts/MainLayout";
-
+import Details from "./pages/Details.jsx"
 export const TokenContext = createContext();
 export const UserContext = createContext();
 
@@ -30,13 +30,14 @@ function App() {
     password: "password",
   };
   localStorage.setItem("user", JSON.stringify(User));
+  
   return (
     <>
       <UserContext.Provider value={{ user, setUser }}>
         <TokenContext.Provider value={{ token, settoken }}>
           <Routes>
             <Route
-              index
+              path="/"
               element={
                 <MainLayout>
                   <Home></Home>
@@ -44,10 +45,18 @@ function App() {
               }
             ></Route>
             <Route
-              path="/product/:id"
+              path="/products"
               element={
                 <MainLayout>
                   <Products></Products>
+                </MainLayout>
+              }
+            ></Route>
+            <Route
+              path="/product/:id"
+              element={
+                <MainLayout>
+                  <Details></Details>
                 </MainLayout>
               }
             ></Route>

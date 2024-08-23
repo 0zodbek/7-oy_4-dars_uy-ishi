@@ -1,21 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../assets/gif.gif";
-
+import { useNavigate } from "react-router-dom";
 function Products() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const navigate = useNavigate("");
+  const [cartItem, setCartItem] = useState([]); // Cart item state
+  const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(null); // Counter state
+  const [item, setItem] = useState("");
+  const [counterCart, setCounterCart] = useState(0);
   useEffect(() => {
     setIsLoading(true);
     fetch(`https://strapi-store-server.onrender.com/api/products/${id}`)
       .then((res) => res.json())
-      .then((data) => setProduct(data.data))
-      .catch((error) => console.error("Error fetching product:", error))
+      .then((data) => setProduct(data.data),setItem(JSON.parse(JSON.stringify(product))))
+      .catch((error)=> {console.log(error)})
       .finally(() => setIsLoading(false));
   }, [id]);
-
+  const handleClick = (id) => {
+    const newItem = { id: id, count: count + 1, title: product.attributes.title, company: product.attributes.company };
+    let cart = [...cartItem];
+    console.log(cart);
+    cart.push(newItem);
+    setCartItem(cart)
+    localStorage.setItem("cart", JSON.stringify(cart));
+    let indicator = [...counter];
+    console.log(indicator);
+  };
+  // console.log(cartItem);
+  // setItem(JSON.parse(JSON.stringify(product)))
   return (
     <>
       {isLoading ? (
@@ -30,7 +46,7 @@ function Products() {
           <div className="flex gap-20">
             {""}
             <div className="w-[512px] h-[384px]">
-              <img 
+              <img
                 className="h-96 object-cover rounded-lg lg:w-full"
                 src={product.attributes?.image}
                 alt={product.attributes?.title}
@@ -44,11 +60,64 @@ function Products() {
                 {product.attributes.company}
               </p>
               <p className="mt-3 text-xl">${product.attributes.price / 100}</p>
-              <p className="mt-6 leading-8">{product.attributes.description}</p>
+              <p className="mt-6 leading-8 text-base">
+                {product.attributes.description}
+              </p>
+              <h4 className="text-md font-medium tracking-wider capitalize mt-6">
+                colors
+              </h4>
               <div className="colors">
-                <button type="button" className="badge w-6 h-6 mr-2 false bg-green-500"  ></button>
-                <button type="button" className="badge w-6 h-6 mr-2 false bg-blue-500 border-secondary"  ></button>
-                </div>
+                <button
+                  type="button"
+                  className="badge w-6 h-6 mr-2 false bg-green-500"
+                ></button>
+                <button
+                  type="button"
+                  className="badge w-6 h-6 mr-2 false bg-blue-500 border-secondary"
+                ></button>
+              </div>
+              <label className="label" htmlFor="amount">
+                <h4 className="text-md font-medium -tracking-wider capitalize">
+                  amount
+                </h4>
+              </label>
+              <select
+                onChange={() => {
+                  setCount(event.target.value);
+                }}
+                className="select border-primary border-solid select-bordered w-80 rounded-md select-md"
+                id="amount"
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+              </select>
+              <br />
+              <button
+                onClick={() => {
+                  handleClick(product.id);
+                }}
+                className="btn hover:bg-blue-900 btn-md mt-12 border-none rounded-lg bg-blue-700 text-white"
+              >
+                Add to bag
+              </button>
               {""}
             </div>
           </div>

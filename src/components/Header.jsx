@@ -138,13 +138,13 @@ import { useNavigate, Link, NavLink } from "react-router-dom";
 import { UserContext, TokenContext } from "../App";
 
 function Header() {
-  const token = useContext(TokenContext);
-  const user = useContext(UserContext);
+  const token = useContext(TokenContext)
+  const user = useContext(UserContext) 
   console.log(token);
   console.log(user);
-
+  const indicator = localStorage.getItem("counter")
+  const [counter, setCounter] = useState(indicator) || null
   const navigate = useNavigate();
-  const [item, setItem] = useState(localStorage.getItem("item"));
   const logout = () => {
     token.settoken("");
     user.setUser({});
@@ -168,12 +168,12 @@ function Header() {
             </div>
           ) : (
             <div className="flex gap-x-2 items-center">
-              <Link to="login" className=" hover:underline cursor-pointer text-right text-xs sm:text-sm">
+              <span onClick={()=> {navigate('/login')}} className=" hover:underline cursor-pointer text-right text-xs sm:text-sm">
                 Sign in / Guest
-              </Link>
-              <Link to="register" className="hover:underline cursor-pointer text-right text-xs sm:text-sm">
+              </span>
+              <span onClick={()=> {navigate('/register')}} className="hover:underline cursor-pointer text-right text-xs sm:text-sm">
                 Create Account
-              </Link>
+              </span>
             </div>
           )}
         </div>
@@ -236,7 +236,7 @@ function Header() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              <span className="badge badge-sm indicator-item">{localStorage.getItem("counter")}</span>
+              <span className="badge badge-sm indicator-item">{counter}</span>
             </div>
           </div>
         </div>

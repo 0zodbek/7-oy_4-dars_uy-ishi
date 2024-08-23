@@ -9,9 +9,9 @@ function Products() {
   const navigate = useNavigate("");
   const [cartItem, setCartItem] = useState([]); // Cart item state
   const [count, setCount] = useState(0);
-  const [counter, setCounter] = useState(null); // Counter state
+  let indicator = 0 ;
   const [item, setItem] = useState("");
-  const [counterCart, setCounterCart] = useState(0);
+  const [counter, setCounter] = useState()
   useEffect(() => {
     setIsLoading(true);
     fetch(`https://strapi-store-server.onrender.com/api/products/${id}`)
@@ -20,18 +20,31 @@ function Products() {
       .catch((error)=> {console.log(error)})
       .finally(() => setIsLoading(false));
   }, [id]);
+  if (!product) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
+  }
   const handleClick = (id) => {
-    const newItem = { id: id, count: count + 1, title: product.attributes.title, company: product.attributes.company };
-    let cart = [...cartItem];
-    console.log(cart);
-    cart.push(newItem);
-    setCartItem(cart)
-    localStorage.setItem("cart", JSON.stringify(cart));
-    let indicator = [...counter];
+    let products=[];
+    if(localStorage.getItem("cart")){
+    products = JSON.parse(localStorage.getItem("cart"));
+  }
+  if(localStorage.getItem("counter")){
+    setCounter(JSON.parse(localStorage.getItem("counter")))}
+    const newItem = { id: id, count: count, title: product.attributes.title, company: product.attributes.company , image: product.attributes.image};
+    products.push(newItem);
+    localStorage.setItem("cart", JSON.stringify(products))
+    let counter = JSON.parse(localStorage.getItem("cart"))
+    console.log(counter);
+    counter.map((item, index) =>{
+    indicator += (item.count * 1)
     console.log(indicator);
+    localStorage.setItem("counter", JSON.stringify(indicator))
+    })
   };
-  // console.log(cartItem);
-  // setItem(JSON.parse(JSON.stringify(product)))
   return (
     <>
       {isLoading ? (

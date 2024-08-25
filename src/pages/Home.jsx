@@ -80,10 +80,10 @@ function Home() {
         </div>
       </div>
       <div className="featuredproducts container mx-auto">
-        <h2 className="max-w-6xl mx-auto text-3xl font-medium tracking-wider capitalize pb-5   border-b border-base-300 ">
+        <h2 className="max-w-[1104px] mx-auto text-3xl font-medium tracking-wider capitalize pb-5 border-b border-base-300 ">
           Featured Products
         </h2>
-        <div className="wrapper flex max-w-6xl mx-auto justify-between border-t-2 pt-10 mb-10">
+        <div className="wrapper max-w-[1104px] flex flex-wrap mx-auto justify-between pt-10 mb-10">
           {data.length > 0 &&
             data.map((el, index) => {
               console.log(el);
@@ -91,7 +91,7 @@ function Home() {
                 <div
                   onClick={() => handleClick(el.id)}
                   style={{ width: "352px", height: "332px", cursor: "pointer" }}
-                  className="shadow-xl hover:shadow-2xl transition duration-300 p-4 rounded-2xl"
+                  className="shadow-xl mx-auto mb-4 hover:shadow-2xl transition duration-300 p-4 rounded-2xl"
                   key={index}
                 >
                   <div className="text-center">

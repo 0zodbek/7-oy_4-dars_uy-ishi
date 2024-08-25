@@ -21,27 +21,29 @@ function Home() {
   };
   console.log(data);
   return (
-    <div>
+    <div className="snap-none">
       <div className="container px-8 py-20 mx-auto max-w-6xl flex justify-between">
         <div className="max-w-lg flex flex-wrap items-center">
-          <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl text-slate-700 mt-5">
+          <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl text-slate-700 mt-5  ">
             We are changing the way people shop
           </h1>
-          <p className="mt- -5 max-w-xl text-lg leading-8">
+          <p className="mt-8 max-w-xl text-lg leading-8"
+          >
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
             perferendis porro nobis.
           </p>
           <button
             onClick={() => navigate("/products")}
-            className="text-white btn btn-info"
+            className="text-white mt-8  btn btn-info rounded-lg"
           >
             OUR PRODUCTS
           </button>
         </div>
         <div
           style={{ width: "496px", height: "448px" }}
-          className="carousel carousel-center bg-neutral rounded-box space-x-4 p-4"
+          className="hidden carousel lg:carousel carousel-center bg-neutral rounded-box space-x-4 p-4"
+          
         >
           <div className="carousel-item">
             <img
@@ -77,8 +79,8 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="featuredproducts">
-        <h2 className="max-w-6xl mx-auto text-3xl font-medium tracking-wider capitalize pb-5">
+      <div className="featuredproducts container mx-auto">
+        <h2 className="max-w-6xl mx-auto text-3xl font-medium tracking-wider capitalize pb-5   border-b border-base-300 ">
           Featured Products
         </h2>
         <div className="wrapper flex max-w-6xl mx-auto justify-between border-t-2 pt-10 mb-10">

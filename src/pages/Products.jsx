@@ -186,7 +186,7 @@ function Products() {
                   cursor: "pointer",
                   marginTop: "16px",
                 }}
-                className="card w-full shadow-xl hover:shadow-2xl transition duration-300"
+                className="card w-full shadow-xl mx-auto hover:shadow-2xl transition duration-300"
                 key={index}
               >
                 <figure class="px-4 pt-4">

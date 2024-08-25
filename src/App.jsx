@@ -24,13 +24,7 @@ function App() {
       setUser(JSON.parse(localStorage.getItem("user")));
       }
   }, []);
-    let User = {
-    name: "John Doe",
-    email: "john@example.com",
-    password: "password",
-  };
-  localStorage.setItem("user", JSON.stringify(User));
-  
+    
   return (
     <>
       <UserContext.Provider value={{ user, setUser }}>
